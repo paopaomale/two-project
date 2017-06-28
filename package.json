@@ -7,6 +7,12 @@
         "build": "webpack",
         "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
         "dev": "weex-builder src dist -w",
+        "copy": "npm run copy:ios && npm run copy:android",
+        "script": "node script.js",
+        "copy:ios": "cp -r dist/weex/* platforms/ios/bundlejs/ && npm run script",
+        "copy:android": "cp -r dist/weex/* platforms/android/app/src/main/assets/",
+        "start": "npm run build && npm run copy:ios",
+        "start:android": "npm run build && npm run copy",
         "serve": "webpack-dev-server --config webpack.dev.js -p --open"
     },
     "keywords": [
