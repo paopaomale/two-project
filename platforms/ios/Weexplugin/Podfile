@@ -1,0 +1,16 @@
+source 'git@github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+#inhibit_all_warnings!
+
+def common
+	pod 'WeexSDK', :path=>'../WeexSDK/'
+	pod 'WeexSVGPlugin', :path=>'../WeexSVGPlugin/'
+end
+
+target 'Weexplugin' do
+    common
+end
+
+target 'WeexpluginTests' do
+    common
+end
