@@ -72,6 +72,8 @@
     }
     
     WXBaseViewController *vc = [[WXBaseViewController alloc]initWithSourceURL:[NSURL URLWithString:param[@"url"]]];
+    vc.view.backgroundColor = [UIColor whiteColor];
+
     vc.hidesBottomBarWhenPushed = YES;
     [container.navigationController pushViewController:vc animated:animated];
     [self callback:block code:MSG_SUCCESS data:nil];
