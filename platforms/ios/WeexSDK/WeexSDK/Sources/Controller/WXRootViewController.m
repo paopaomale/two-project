@@ -27,14 +27,43 @@ typedef void(^OperationBlock)(void);
 
 @property(nonatomic, strong) WXThreadSafeMutableArray *operationArray;
 @property (nonatomic, assign) BOOL operationInProcess;
+@property (nonatomic, strong) id popDelegate;
 
 @end
 
 @implementation WXRootViewController
 
-- (void)viewDidLoad
+//- (void)viewDidLoad
+//{
+//    self.interactivePopGestureRecognizer.delegate = self;
+//}
+
+#pragma mark -UINavigationControllerDelegate
+// 导航控制器显示一个控制器完成的时候就会调用
+- (void)navigationController:(nonnull UINavigationController *)navigationController didShowViewController:(nonnull UIViewController *)viewController animated:(BOOL)animated
 {
-    self.interactivePopGestureRecognizer.delegate = self;
+    if (viewController == self.childViewControllers[0]) {
+        // 回到根控制器
+        self.interactivePopGestureRecognizer.delegate = _popDelegate;
+    }else{ // 不是根控制器
+        self.interactivePopGestureRecognizer.delegate = nil;
+        
+    }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    // 1.恢复滑动返回功能:清空滑动手势代理
+    _popDelegate = self.interactivePopGestureRecognizer.delegate;
+    
+    // 2.想回到导航控制器的根控制器的时候,恢复滑动手势代理,目的:解决假死状态
+    
+    // 监听导航控制器什么时候回到根控制器
+    
+    // 设置导航控制器的代理,监听导航控制器什么时候回到根控制器
+    self.delegate = self;
 }
 
 - (id)initWithSourceURL:(NSURL *)sourceURL
@@ -43,6 +72,8 @@ typedef void(^OperationBlock)(void);
     
     return [super initWithRootViewController:baseViewController];
 }
+
+
 
 //reduced pop/push animation in iOS 7
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
@@ -100,13 +131,28 @@ typedef void(^OperationBlock)(void);
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-        return [super pushViewController:viewController animated:animated];
+    if (WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+        if (self.childViewControllers.count > 1) { // 不是根控制器
+            viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:0 target:self action:@selector(back)];
+        }
+        [super pushViewController:viewController animated:animated];
+        
+        return;
+    }
+
     
     [self addOperationBlock:^{
         [super pushViewController:viewController animated:NO];
     }];
 }
+
+// 点击返回按钮的时候调用
+- (void)back
+{
+    // 回到上一个控制器
+    [self popViewControllerAnimated:YES];
+}
+
 
 - (void)addOperationBlock:(OperationBlock)operation
 {
