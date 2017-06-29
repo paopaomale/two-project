@@ -26,6 +26,7 @@
 #import <MediaPlayer/MPMoviePlayerViewController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import <AVFoundation/AVPlayerItem.h>
+#import <AVFoundation/AVAnimation.h>
 
 @interface WXPlayer : NSObject
 
@@ -50,11 +51,14 @@
     if (self = [super init]) {
         if ([self greater8SysVer]) {
             _playerViewController = [AVPlayerViewController new];
-            
+            AVPlayerViewController * AVVC= (AVPlayerViewController *)_playerViewController;
+            AVVC.showsPlaybackControls = NO;
+            AVVC.videoGravity = AVLayerVideoGravityResizeAspectFill;
         } else {
             _playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:nil];
             MPMoviePlayerViewController *MPVC = (MPMoviePlayerViewController*)_playerViewController;
-            MPVC.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+//            MPVC.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+            MPVC.moviePlayer.controlStyle = MPMovieControlStyleNone;
             MPVC.moviePlayer.shouldAutoplay = NO;
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(playFinish)

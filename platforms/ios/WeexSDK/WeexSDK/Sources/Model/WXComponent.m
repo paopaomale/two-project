@@ -217,6 +217,10 @@
             _layer.opacity = _opacity;
             _view.backgroundColor = _backgroundColor;
         }
+        
+        if (_blurEffect) {
+            [self setBlurEffect];
+        }
 
         if (_backgroundImage) {
             [self setGradientLayer];
@@ -475,6 +479,27 @@
     WXAssertMainThread();
     
 }
+
+-(void)setBlurEffect {
+    if(_blurEffect) {
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            UIVisualEffectView * visualView = [[UIVisualEffectView alloc] initWithEffect:blur];
+            visualView.frame = weakSelf.view.bounds;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //                [weakSelf.view addSubview:visualView];
+                [weakSelf.view insertSubview:visualView atIndex:0];
+            });
+        });
+        
+    }
+    
+}
+
+
 
 - (void)setGradientLayer
 {

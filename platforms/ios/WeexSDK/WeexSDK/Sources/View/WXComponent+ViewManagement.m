@@ -156,6 +156,7 @@ do {\
 - (void)_initViewPropertyWithStyles:(NSDictionary *)styles
 {
     _backgroundColor = styles[@"backgroundColor"] ? [WXConvert UIColor:styles[@"backgroundColor"]] : [UIColor clearColor];
+    _blurEffect = styles[@"blurEffect"] ? [WXConvert NSString:styles[@"blurEffect"]] : nil;
     _backgroundImage = styles[@"backgroundImage"] ? [WXConvert NSString:styles[@"backgroundImage"]]: nil;
     _opacity = styles[@"opacity"] ? [WXConvert CGFloat:styles[@"opacity"]] : 1.0;
     _clipToBounds = styles[@"overflow"] ? [WXConvert WXClipType:styles[@"overflow"]] : NO;
@@ -183,6 +184,11 @@ do {\
     if (styles[@"backgroundColor"]) {
         _backgroundColor = [WXConvert UIColor:styles[@"backgroundColor"]];
         [self setNeedsDisplay];
+    }
+    
+    if (styles[@"blurEffect"]) {
+        _blurEffect = [WXConvert NSString:styles[@"blurEffect"]];
+        [self setBlurEffect];
     }
     
     if (styles[@"backgroundImage"]) {

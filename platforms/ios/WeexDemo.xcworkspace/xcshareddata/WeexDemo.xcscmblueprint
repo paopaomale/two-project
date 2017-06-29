@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F6A78EF574181E9AC539B4BBA58326A907E8271B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F6A78EF574181E9AC539B4BBA58326A907E8271B" : 9223372036854775807,
+    "94468D5A2514DE70F161EF03EBBEA8AF0AE81F96" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "021D0B52-061B-41ED-B1E1-F9C88453AF47",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F6A78EF574181E9AC539B4BBA58326A907E8271B" : "two-project\/",
+    "94468D5A2514DE70F161EF03EBBEA8AF0AE81F96" : "one-project\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WeexDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "platforms\/ios\/WeexDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/paopaomale\/one-project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "94468D5A2514DE70F161EF03EBBEA8AF0AE81F96"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/paopaomale\/two-project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F6A78EF574181E9AC539B4BBA58326A907E8271B"
+    }
+  ]
+}

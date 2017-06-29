@@ -29,4 +29,7 @@
 
 - (void)goForward;
 
+- (NSString *)getCurrentUrl;
+
+
 @end
