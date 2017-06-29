@@ -49,6 +49,7 @@
     [WXSDKEngine initSDKEnvironment];
     
     [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    [WXSDKEngine registerModule:@"scanner" withClass:NSClassFromString(@"PAOScanner")];
     
 #ifdef DEBUG
     [WXLog setLogLevel:WXLogLevelLog];
