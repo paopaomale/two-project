@@ -300,7 +300,7 @@ static const CGFloat WXToastDefaultPadding = 30.0;
         return;
     }
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:@"" delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
     alertView.tag = type;
     if (type == WXModalTypePrompt) {
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -315,7 +315,7 @@ static const CGFloat WXToastDefaultPadding = 30.0;
     });
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     WXModuleCallback callback = objc_getAssociatedObject(alertView, &WXModalCallbackKey);
     if (!callback) return;
